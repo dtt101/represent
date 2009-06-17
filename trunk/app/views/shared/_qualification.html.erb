@@ -1,0 +1,14 @@
+<li id="qualification_<%= h(qualification.id)%>" style="display:block;list-style:none">
+<strong><%= h(qualification.description) %></strong> <%= h(qualification.name) %>. 
+<% if !qualification.grade.blank? %>
+<strong>Grade</strong> <%= h(qualification.grade) %>. 
+<% end %>
+<%= Date::MONTHNAMES[qualification.qualification_date.mon] %> <%= qualification.qualification_date.year %>.
+<% if @owner %>
+<img src="/images/loader.gif" style="display:none;" id="qualification-action-loader-<%= qualification.id%>"/>
+<span class="actions">
+ <%= link_to_remote("edit", :url => {:controller => 'Portfolio::Qualification', :action => 'edit', :qualification_id => qualification.id }) %> | 
+ <%= link_to_remote("delete", :confirm => "Are you sure you want to delete this qualification?", :url => {:controller => 'Portfolio::Qualification', :action => 'destroy', :qualification_id => qualification.id }, :before => "Element.show('qualification-action-loader-#{qualification.id}')" ) %>
+</span>
+<% end %>
+</li>

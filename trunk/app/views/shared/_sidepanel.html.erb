@@ -1,0 +1,27 @@
+<div id="sidepanel">
+<% if session[:user_id] %>
+<h4>Represent Yourself</h4>
+<ul>
+	<li><%= link_to_unless_current "Your portfolio", { :controller => 'portfolio', :id => session[:username], :action => 'default' } %><br />
+	<span>Create, review and manage your portfolio</span></li>
+	<li><%= link_to_unless_current "Your contacts", { :controller => 'Portfolio::Contacts', :id => session[:username], :action => 'index' } %><br />
+	<span>Contacts can see shared things</span></li>
+</ul>
+<h4>Your Account</h4>
+<ul>
+	<li><a href="#">Your profile</a><br />
+	<span>Edit your personal details</span></li>
+	<li><a href="#">Manage your account</a><br />
+	<span>Edit your account details and upgrade your portfolio</span></li>
+	<li><a href="#">Help</a><br />
+	<span>Get instant help and support</span></li>
+	<li><%= link_to "Logout", { :controller => 'home', :action => 'logout' } %><br />
+	<span>Go somewhere else</span></li>
+</ul>
+<% else %>
+<h4>Represent Yourself</h4>
+<ul>
+  <li><%= link_to "Login", { :controller => 'home', :action => 'login' } %></li>
+</ul>
+<% end %>
+</div>

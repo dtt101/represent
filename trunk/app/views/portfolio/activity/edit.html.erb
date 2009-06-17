@@ -1,0 +1,41 @@
+<div id="content-title">
+<h2>Edit this activity</h2>
+</div>
+<p>Complete this form to edit an activity.<br />Making the activity <strong>public</strong> means <strong>anyone</strong> who visits your portfolio <strong>will be able to see it</strong>.</p>
+<%= error_messages_for :activity %>
+
+<% form_for :activity, :url => { :action => 'update', :activity_id => @activity.id } do |f| %>
+	<div>
+		<label>What did you do?</label><br />
+		<%= f.text_field :description, :class => 'medium' %>
+	</div>
+
+	<div>
+		<label>Where?</label><br />
+		<%= f.text_field :location, :class => 'medium' %>
+	</div>
+
+	<div>
+		<label>When did it start?</label><br />
+		<%= f.date_select(:start_date, :order => [:day, :month, :year], :start_year => 1920, :end_year => DateTime.now.year) %>
+	</div>
+
+	<div>
+		<label>When did it finish?</label><br />
+		<%= f.date_select(:end_date, :order => [:day, :month, :year], :start_year => 1920, :end_year => DateTime.now.year) %>
+	</div>
+
+	<div>
+	  <label>What did you learn from this?</label><br />
+	  <%= f.text_area :result, :cols => 69 %>
+	</div>
+
+	<div>
+		<label>Privacy setting: </label>
+		<%= f.select(:privacy, [ ['Private', 'private'], ['Shared', 'shared'], ['Public', 'public'] ]) %>
+	</div>
+
+	<div>
+		<%= f.submit "Save" %> or <%= link_to "go back to your activities", :action => 'index' %>
+	</div>
+<% end %>

@@ -1,0 +1,49 @@
+<div id="content-title">
+<h2>Links</h2>
+</div>
+
+<% if @owner %>
+	<div id="add_link" class="breakout">
+	<a href="#" onclick="Element.hide('add_link');Element.show('add_link_form');return false;">Add a link...</a>
+	</div>
+	<div id="add_link_form" style="display:none" class="breakout">
+	<h4>Add a link <img src="/images/loader.gif" alt="loading" id="link_loader" style="display:none"/></h4>
+	<% remote_form_for :link, :url => {:controller => 'Portfolio::Links', :action => 'create'}, :before => "Element.show('link_loader');" do |f| %>
+	<div class="leftcol">
+		<div>
+			<label>Name</label><br />
+			<%= f.text_field :name, :class => 'small' %>
+		</div>
+		<div>
+			<label>Web address (start with http://)</label><br />
+			<%= f.text_field :url, :class => 'small' %>
+		</div>
+	</div>
+	<div class="rightcol">
+		<div>
+			<label>Comments</label><br />
+			<%= f.text_field :description, :class => 'small' %>
+		</div>
+		<div class="column-control">
+			<label>Privacy setting: </label>
+			<%= f.select(:privacy, [ ['Private', 'private'], ['Shared', 'shared'], ['Public', 'public'] ]) %>
+		</div>
+	</div>
+	<div class="follow-column">
+			<%= submit_tag ' Add ' %> or <a href="#" onclick="Element.show('add_link');Element.hide('add_link_form');return false;">I've finished adding links</a>
+			<%= f.hidden_field :portfolio_id, :value => @portfolio.id %>
+	</div>
+	<% end %>
+	</div>
+<% end %>
+
+<div class="follow-column" id="links">
+<% if @links.length > 0 %>
+<% for link in @links %>
+<%= render :partial => 'shared/link', :object => link %>
+<% end %>
+<% else %>
+<h4>No links available</h4>
+<p>Add links to your portfolio. They could be to sites you like, things you've made or other information about you on the internet. You can then choose to share them with the world, just contacts you've added or keep them private.<p>
+<% end %>
+</div>

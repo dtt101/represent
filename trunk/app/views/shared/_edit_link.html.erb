@@ -1,0 +1,32 @@
+<div id="edit_l_form_<%= link.id %>" style="display:block" class="breakout">
+<h4>Edit link <img src="/images/loader.gif" alt="loading" id="link_edit_loader_<%= link.id %>" style="display:none"/></h4>
+
+<% remote_form_for :link, :url => {:controller => 'Portfolio::Links', :action => 'update', :link_id => link.id}, :before => "Element.show('link_edit_loader_#{link.id}');" do |f| %>
+<div class="leftcol">
+	<div>
+		<label>Name</label><br />
+		<%= f.text_field :name, :class => 'small', :value => link.name %>
+	</div>
+	<div>
+		<label>Web address (start with http://)</label><br />
+		<%= f.text_field :url, :class => 'small', :value => link.url %>
+	</div>
+</div>
+<div class="rightcol">
+	<div>
+		<label>Comments</label><br />
+		<%= f.text_field :description, :class => 'small', :value => link.description %>
+	</div>
+	<div class="column-control">
+		<label>Privacy setting: </label>
+		<%= f.select(:privacy, [ ['Private', 'private'], ['Shared', 'shared'], ['Public', 'public'] ], :selected => link.privacy) %>
+	</div>
+</div>
+<div class="follow-column">
+		<%= submit_tag ' Save ' %> or <a href="#" onclick="Element.show('link_<%= link.id %>');Element.remove('edit_l_form_<%= link.id %>');return false;">I've finished editing this link</a>
+		<%= f.hidden_field :portfolio_id, :value => @portfolio.id %>
+		<%= f.hidden_field :id, :value => link.id %>
+</div>
+<% end %>
+
+</div>

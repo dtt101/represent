@@ -1,0 +1,2 @@
+module Portfolio::ActivityHelper
+end

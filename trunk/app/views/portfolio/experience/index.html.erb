@@ -1,0 +1,21 @@
+<div id="content-title">
+<h2>Experience</h2>
+<% if @owner %>
+<%= link_to "Record a new experience", :action => "new" %>
+<% end %>
+</div>
+<% if @experiences.length > 0 %>
+<% for experience in @experiences %>
+<div class="entry">
+<h4><img src="/images/<%= experience.privacy %>.gif" alt="<%= experience.privacy %>" />
+<%= link_to experience.role, :action => "show", :experience_id => experience.id %>
+ <span><span><%= h(experience.employer) %></span> - <%= h(experience.location) %></span>
+</h4>
+<p><strong>Dates:</strong> <%= Date::MONTHNAMES[experience.start_date.mon] %> <%= experience.start_date.year %> - <%= Date::MONTHNAMES[experience.end_date.mon] %> <%= experience.end_date.year %></p>
+<%= simple_format(truncate(experience.notes, 450)) %>
+</div>
+<% end %>
+<% else %>
+<h4>No experience available</h4>
+<p>Record your experience, work-based or otherwise. You can then choose to share them with the world, just contacts you've added or keep them private.<p>
+<% end %>

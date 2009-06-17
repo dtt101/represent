@@ -1,0 +1,21 @@
+<div id="content-title">
+<h2>Meeting</h2>
+<% if @owner %>
+<%= link_to "Record a new meeting", :action => "new" %>
+<% end %>
+</div>
+<% if @meetings.length > 0 %>
+<% for meeting in @meetings %>
+<div class="entry">
+<h4><img src="/images/<%= meeting.privacy %>.gif" alt="<%= meeting.privacy %>" />
+Attendees: <%= link_to meeting.attendees, :action => "show", :meeting_id => meeting.id %>
+Location: <span><%= h(meeting.location) %></span>
+</h4>
+<p><strong>Date:</strong> <%= meeting.meeting_date.to_date.to_s(:long) %></p>
+<%= simple_format(truncate(meeting.result, 250)) %>
+</div>
+<% end %>
+<% else %>
+<h4>No meetings available</h4>
+<p>Record times when you have met people who have inspired you, worked with you or helped you learn. You can choose to share them with the world, just contacts you've added or keep them private.<p>
+<% end %>

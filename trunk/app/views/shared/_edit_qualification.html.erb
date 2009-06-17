@@ -1,0 +1,33 @@
+<div id="edit_q_form_<%= qualification.id %>" style="display:block" class="breakout">
+<h4>Edit qualification <img src="/images/loader.gif" alt="loading" id="qualification_edit_loader_<%= qualification.id %>" style="display:none"/></h4>
+<% remote_form_for :qualification, :url => {:controller => 'Portfolio::Qualification', :action => 'update', :qualification_id => qualification.id }, :before => "Element.show('qualification_edit_loader_#{qualification.id}');" do |f| %>
+<div class="leftcol">
+	<div>
+		<label>Name <span>(i.e English)</span></label><br />
+		<%= f.text_field :name, :class => 'small', :value => qualification.name %>
+	</div>
+
+	<div>
+		<label>Type <span>(i.e BA, GCSE)</span></label><br />
+		<%= f.text_field :description, :class => 'small', :value => qualification.description %>
+	</div>
+</div>
+<div class="rightcol">
+	<div>
+		<label>Grade</label><br />
+		<%= f.text_field :grade, :class => 'small', :value => qualification.grade %>
+	</div>
+
+	<div>
+		<label>Date qualified</label><br />
+		<%= f.date_select :qualification_date, :discard_day => true, :order => [:month, :year], :start_year => 1920, :end_year => DateTime.now.year, :default => qualification.qualification_date %>
+	</div>
+		<%= f.hidden_field :id, :value => qualification.id %>
+		<%= f.hidden_field :institution_id, :value => qualification.institution.id %>
+		<%= f.hidden_field :portfolio_id, :value => @portfolio.id %>
+</div>
+<div class="follow-column">
+	<%= submit_tag ' Save ' %> or <a href="#" onclick="Element.show('qualification_<%= qualification.id %>');Element.remove('edit_q_form_<%= qualification.id %>');return false;">I've finished editing this qualification</a>
+</div>
+<% end %>
+</div>

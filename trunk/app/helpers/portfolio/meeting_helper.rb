@@ -1,0 +1,2 @@
+module Portfolio::MeetingHelper
+end

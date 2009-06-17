@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Represent</title>
+	<%= javascript_include_tag :defaults %>
+	<%= stylesheet_link_tag "represent", :media => "all" %>
+	<%= stylesheet_link_tag "nav", :media => "all" %>
+</head>
+<body>
+<div id="header">
+	<h1><%= link_to(image_tag("/images/represent.gif", :size => "189x41"), { :controller => "home", :action => "index" } ) %></h1>
+	<h2>e-portfolio</h2>
+</div>
+<div id="subheader">
+	<h2><%= @portfolio.user.full_name %>
+	<% if !@owner %>
+	<% if @user %>
+		<span id="contact">
+			<%= render(:partial => "shared/contact", :locals => { :logged_in_user => @user, :contact_user => @portfolio.user, :is_contact => @portfolio_is_contact }) %>
+		</span>
+	<% end %>
+	<% end %>	
+	</h2>
+	<% if @owner %>
+	<a id="link-update" href="#">Your status:</a>
+	<%= editable_content(
+	      :content => {
+	        :element => 'span',
+	        :text => @portfolio.user.status,
+	        :options => {
+	          :id => "user_status",
+	          :class => 'editable-content'
+	        }
+	       },
+	      :url => {
+	        :controller => 'portfolio/' + @portfolio.user.username,
+	        :action => 'update_user_status',
+	        :id => @portfolio.user.id
+	       },
+	      :ajax => {
+	        :okText => "'Update'",
+	        :cancelText => "'or cancel'",
+			:clickToEditText => "'Click to update your status'",
+			:highlightcolor => "'#E6ECFF'",
+			:externalControl => "'link-update'"
+	       }
+	    ) %>
+	<% else %>
+		<strong>Status:</strong> <%= @portfolio.user.status %>
+	<% end %>
+</div>
+<%= render(:partial => "shared/navigation")%>
+<div id="main">
+	<div id="content">
+	<% if flash[:notice]%>
+	<div id="notice"><%= flash[:notice] %></div>
+	<% end %>
+	<%= yield  %>
+	</div>
+	<%= render(:partial => "shared/sidepanel")%>
+</div>
+<%= render(:partial => "shared/footer")%>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-5080751-1");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+</body>
+</html>

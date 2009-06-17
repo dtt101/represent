@@ -1,0 +1,20 @@
+<div id="content-title">
+<% if @achievement %>
+<img src="/images/<%= @achievement.privacy %>.gif" alt="<%= @achievement.privacy %>" />
+<h2>Achievement details</h2>
+<% if @owner %>
+<%= link_to "Edit", :action => "edit", :achievement_id => @achievement.id %>
+<%= link_to "Delete", :action => "confirm", :achievement_id => @achievement.id %>
+<% end %>
+</div>
+<div id="post">
+<p><strong>Date:</strong> <%= @achievement.achievement_date.to_date.to_s(:long) %></p>
+<p><strong>Location:</strong> <%= h(@achievement.location) %></p>
+<strong>What was achieved?</strong><br />
+<%= simple_format(@achievement.description) %>
+<strong>How was it achieved?</strong>
+<%= simple_format(@achievement.means) %>
+</div>
+<% else %>
+<h2>No achievement available</h2>
+<% end %>

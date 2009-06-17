@@ -1,0 +1,2 @@
+module Portfolio::EducationHelper
+end

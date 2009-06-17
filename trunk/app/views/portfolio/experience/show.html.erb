@@ -1,0 +1,18 @@
+<div id="content-title">
+<% if @experience %>
+<img src="/images/<%= @experience.privacy %>.gif" alt="<%= @experience.privacy %>" />
+<h2><%= h(@experience.role) %></h2>
+<% if @owner %>
+<%= link_to "Edit", :action => "edit", :experience_id => @experience.id %>
+<%= link_to "Delete", :action => "confirm", :experience_id => @experience.id %>
+<% end %>
+</div>
+<div id="post">
+<p><strong><%= h(@experience.employer) %></strong> - <%= h(@experience.location) %></p>
+<p><strong>Dates:</strong> <%= Date::MONTHNAMES[@experience.start_date.mon] %> <%= @experience.start_date.year %> - <%= Date::MONTHNAMES[@experience.end_date.mon] %> <%= @experience.end_date.year %></p>
+<%= simple_format(@experience.notes) %>
+</div>
+
+<% else %>
+<h2>No experience available</h2>
+<% end %>

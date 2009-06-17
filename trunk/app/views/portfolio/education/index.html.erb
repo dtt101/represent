@@ -1,0 +1,69 @@
+<div id="content-title">
+<h2>Education</h2>
+<% if @owner %>
+<%= link_to "Create a new school, college or university", :action => "new" %>
+<% end %>
+</div>
+<% if @institutions.length > 0 %>
+<% if @owner %>
+<p>Your formal qualifications, and the school, university or college you got them from.</p>
+<% end %>
+<% for institution in @institutions %>
+<div class="entry">
+<h4><img src="/images/<%= institution.privacy %>.gif" alt="<%= institution.privacy %>" />
+<% if @owner %>
+<%= link_to institution.name, :action => "edit", :institution_id => institution.id %>
+<% else %>
+<%= h(institution.name) %>
+<% end %>
+ <span><%= h(institution.location) %></span></h4>
+<p><strong>Attended:</strong> <%= Date::MONTHNAMES[institution.start_date.mon] %> <%= institution.start_date.year %> - <%= Date::MONTHNAMES[institution.end_date.mon] %> <%= institution.end_date.year %></p>
+<h5>Qualifications</h5>
+<ul id="qualifications_at_<%= institution.id %>" class="hover">
+	<% for qualification in institution.qualifications %>
+		<%= render :partial => 'shared/qualification', :object => qualification %>
+	<% end %>
+</ul>
+<% if @owner %>
+	<div id="add_q_<%= institution.id %>">
+	<a href="#" onclick="Element.hide('add_q_<%= institution.id %>');Element.show('add_q_form_<%= institution.id %>');return false;">Add a qualification...</a>
+	</div>
+	<div id="add_q_form_<%= institution.id %>" style="display:none" class="breakout">
+	<h4>Add a qualification <img src="/images/loader.gif" alt="loading" id="qualification_loader_<%= institution.id %>" style="display:none"/></h4>
+	<% remote_form_for :qualification, :url => {:controller => 'Portfolio::Qualification', :action => 'create'}, :before => "Element.show('qualification_loader_#{institution.id}');" do |f| %>
+	<div class="leftcol">
+		<div>
+			<label>Name <span>(i.e English)</span></label><br />
+			<%= f.text_field :name, :class => 'small' %>
+		</div>
+
+		<div>
+			<label>Type <span>(i.e BA, GCSE)</span></label><br />
+			<%= f.text_field :description, :class => 'small' %>
+		</div>
+	</div>
+	<div class="rightcol">
+		<div>
+			<label>Grade</label><br />
+			<%= f.text_field :grade, :class => 'small' %>
+		</div>
+
+		<div>
+			<label>Date qualified</label><br />
+			<%= f.date_select :qualification_date, :discard_day => true, :order => [:month, :year], :start_year => 1920, :end_year => DateTime.now.year %>
+		</div>
+			<%= f.hidden_field :institution_id, :value => institution.id %>
+			<%= f.hidden_field :portfolio_id, :value => @portfolio.id %>
+	</div>
+	<div class="follow-column">
+		<%= submit_tag ' Add ' %> or <a href="#" onclick="Element.show('add_q_<%= institution.id %>');Element.hide('add_q_form_<%= institution.id %>');return false;">I've finished adding qualifications</a>
+	</div>
+	<% end %>
+	</div>
+<% end %>
+</div>
+<% end %>
+<% else %>
+<h4>No education available</h4>
+<p>Record formal educational achievements, and share them with the world, your contacts, or keep them private.<p>
+<% end %>

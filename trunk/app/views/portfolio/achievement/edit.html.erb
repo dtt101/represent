@@ -1,0 +1,36 @@
+<div id="content-title">
+<h2>Edit this achievement</h2>
+</div>
+<p>Complete this form to edit an achievement.<br />Making the activity <strong>public</strong> means <strong>anyone</strong> who visits your portfolio <strong>will be able to see it</strong>.</p>
+<%= error_messages_for :achievement %>
+
+<% form_for :achievement, :url => { :action => 'update', :achievement_id => @achievement.id } do |f| %>
+	<div>
+		<label>What is it?</label><br />
+		<%= f.text_area :description, :class => 'medium' %>
+	</div>
+
+	<div>
+		<label>How did you do it?</label><br />
+		<%= f.text_area :means, :class => 'medium' %>
+	</div>
+
+	<div>
+		<label>When did you achieve your goal?</label><br />
+		<%= f.date_select(:achievement_date, :order => [:day, :month, :year], :start_year => 1920, :end_year => DateTime.now.year) %>
+	</div>
+
+	<div>
+	  <label>Where did you do most of the work towards it?</label><br />
+	  <%= f.text_field :location, :cols => 69 %>
+	</div>
+
+	<div>
+		<label>Privacy setting: </label>
+		<%= f.select(:privacy, [ ['Private', 'private'], ['Shared', 'shared'], ['Public', 'public'] ]) %>
+	</div>
+
+	<div>
+		<%= f.submit "Save" %> or <%= link_to "go back to your achievements", :action => 'index' %>
+	</div>
+<% end %>

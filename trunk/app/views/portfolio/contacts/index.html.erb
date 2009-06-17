@@ -1,0 +1,30 @@
+<div id="content-title">
+<h2>Contacts</h2>
+</div>
+<p>Adding other <strong>Represent</strong> users as contacts means they can see your <strong>shared</strong> things.</p>
+<p>Likewise, If somebody adds you, then when you visit their portfolio you'll be able to see their <strong>shared</strong> things.</p>
+</p>
+<h3>Contacts you've added</h3>
+<% if @contacts.length > 0 %>
+<ul>
+<% for contact in @contacts %>
+<li>
+<%= link_to contact.full_name, { :controller => 'portfolio', :id => contact.username, :action => 'default' } %>
+</li>
+<% end %>
+</ul>
+<% else %>
+<p>You haven't added any contacts!</p>
+<% end %>
+<h3>You've been added as a contact by:</h3>
+<% if @contactees.length > 0 %>
+<ul>
+<% for contactee in @contactees %>
+<li>
+<%= link_to contactee.full_name, { :controller => 'portfolio', :id => contactee.username, :action => 'default' } %>
+</li>
+<% end %>
+</ul>
+<% else %>
+<p>You haven't been added by anybody!</p>
+<% end %>

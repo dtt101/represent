@@ -1,0 +1,59 @@
+<div id="nav">
+	<ul> 
+		<% if @controller.controller_name == 'portfolio' %>
+		<li class="first current">
+		<% else %>
+		<li class="first">
+		<% end %>
+		<%= link_to "Overview", { :controller => 'portfolio', :id => params[:id], :action => 'default' } %></li>
+		
+		<% if @controller.controller_name == 'posts' %>
+		<li class="current">
+		<% else %>
+		<li>
+		<% end %>
+		<%= link_to "Blog", { :controller => 'Portfolio::Posts', :id => params[:id] } %></li>
+		
+		<% if @controller.controller_name == 'education' %>
+		<li class="current">
+		<% else %>
+		<li>
+		<% end %>
+		<%= link_to "Education", { :controller => 'Portfolio::Education', :id => params[:id] } %></li>
+ 
+		<% if @controller.controller_name == 'experience' %>
+		<li class="current">
+		<% else %>
+		<li>
+		<% end %>
+		<%= link_to "Experience", { :controller => 'Portfolio::Experience', :id => params[:id] } %></li>
+		
+		<% if @controller.controller_name == 'activity' %>
+		<li class="current">
+		<% else %>
+		<li>
+		<% end %>
+		<%= link_to "Activity", { :controller => 'Portfolio::Activity', :id => params[:id] } %></li>
+		
+		<% if @controller.controller_name == 'meeting' %>
+		<li class="current">
+		<% else %>
+		<li>
+		<% end %>
+		<%= link_to "Meeting", { :controller => 'Portfolio::Meeting', :id => params[:id] } %></li>
+		
+		<% if @controller.controller_name == 'achievement' %>
+		<li class="current">
+		<% else %>
+		<li>
+		<% end %>
+		<%= link_to "Achievement", { :controller => 'Portfolio::Achievement', :id => params[:id] } %></li>
+		
+		<% if @controller.controller_name == 'links' %>
+		<li class="current">
+		<% else %>
+		<li>
+		<% end %>
+		<%= link_to "Links", { :controller => 'Portfolio::Links', :id => params[:id] } %></li>
+	</ul>
+</div>

@@ -1,0 +1,20 @@
+<% if is_contact %>
+<span id="is-contact">
+is a contact.
+<%= link_to_remote "Remove?",
+	:url => { :controller => 'Portfolio::Contacts', :id => logged_in_user.username, :action => 'remove', :contact_id => contact_user.id },
+	:before => "Element.show('loader');",
+	:complete => "Element.hide('loader');"
+%>
+</span>				
+<% else %>
+<span id="not-contact">
+is not a contact.
+<%= link_to_remote "Add?",
+	:url => { :controller => 'Portfolio::Contacts', :id => logged_in_user.username, :action => 'add', :contact_id => contact_user.id },
+	:before => "Element.show('loader');",
+	:complete => "Element.hide('loader');"
+ %>
+</span>
+<% end %>
+<span id="loader-container"><img src="/images/loader.gif" alt="Loading" id="loader" style="display:none" /></span>

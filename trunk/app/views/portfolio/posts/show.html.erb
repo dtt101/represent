@@ -1,0 +1,52 @@
+<div id="content-title">
+<% if @post %>
+<img src="/images/<%= @post.privacy %>.gif" alt="<%= @post.privacy %>" />
+<h2><%= h(@post.title) %></h2>
+<span><%= Date::ABBR_MONTHNAMES[@post.created_at.mon] %> <%= @post.created_at.day %></span>
+<% if @owner %>
+<%= link_to "Edit", :action => "edit", :post_id => @post.id %>
+<%= link_to "Delete", :action => "confirm", :post_id => @post.id %>
+<% end %>
+</div>
+<div id="post">
+<%= simple_format(@post.body) %>
+</div>
+<div id="entry-comments">
+<a name="comments"></a>
+<h4><%= @post.comments.count %> comments</h4>
+<% for comment in @post.comments %>
+<div>
+<span><%= link_to comment.user.first_name + " " + comment.user.surname, { :controller => 'portfolio', :id => comment.user.username, :action => 'default' } %> commented <strong><%= time_ago_in_words(comment.created_at)%> ago</strong> at <%= comment.created_at.strftime("%H:%M") %>
+<% if @owner %>
+| <%= link_to "Delete", {:controller => 'Portfolio::Comments', :action => "destroy", :post_id => @post.id, :comment_id => comment.id }, { :confirm => "Are you sure?" } %>
+<% end %>
+</span>
+<%= simple_format(comment.body) %>
+</div>
+<% end %>
+</div>
+<% if is_authorized_user %>
+<div id="add-comment">
+<h4>Post a comment</h4>
+<%= error_messages_for :comment %>
+<% form_for :comment, :url => { :controller => 'Portfolio::Comments', :action => 'create' } do |f| %>
+  <div>
+    <label>Comments</label><br />
+    <%= f.text_area :body, :cols => 69, :rows => 10 %>
+  </div>
+	<%= f.hidden_field :user_id, :value => @user.id %>
+	<%= f.hidden_field :post_id, :value => @post.id %>
+<div>
+<p><strong>Note:</strong> Comments will appear with your name linked to your public portfolio</p>
+</div>
+  <div>
+    <%= f.submit "Post this comment" %>
+  </div>
+<% end %>
+</div>
+<% else %>
+<p><%= link_to "Sign up", :controller => "home" %> to <strong>Represent</strong> and post your comments</p>
+<% end %>
+<% else %>
+<h2>No post available</h2>
+<% end %>

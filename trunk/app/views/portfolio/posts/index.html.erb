@@ -1,0 +1,23 @@
+<div id="content-title">
+<h2>Blog</h2>
+<% if @owner %>
+<%= link_to "Create a new blog post", :action => "new" %>
+<% end %>
+</div>
+<% if @posts.length > 0 %>
+<% for post in @posts %>
+<div class="entry">
+<h4><img src="/images/<%= post.privacy %>.gif" alt="<%= post.privacy %>" /><%= link_to post.title, :action => "show", :post_id => post.id %> <span><%= Date::ABBR_MONTHNAMES[post.created_at.mon] %> <%= post.created_at.day %></span></h4>
+<%= simple_format(truncate(post.body, 450)) %>
+<div>
+<%= link_to pluralize(post.comments.length,"comment"), :action => "show", :post_id => post.id, :anchor => "comments" %>
+<% if post.comments.length > 0 %>
+- latest by <strong><%= post.comments.last.user.first_name %> <%= post.comments.last.user.surname %></strong>
+<% end %> 
+</div>
+</div>
+<% end %>
+<% else %>
+<h4>No posts available</h4>
+<p>The blog is for recording your thoughts and ideas. You can then choose to share them with the world, just contacts you've added or keep them private.<p>
+<% end %>

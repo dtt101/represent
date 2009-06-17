@@ -1,0 +1,10 @@
+<div class="entry link" id="link_<%= h(link.id)%>">
+<h4><img src="/images/<%= link.privacy %>.gif" alt="<%= link.privacy %>" /> <%= link_to h(link.name), h(link.url) %></h4>
+<% if @owner %>
+<img src="/images/loader.gif" style="display:none;" id="link-action-loader-<%= link.id %>"/>
+ <%= link_to_remote("edit", :url => {:controller => 'Portfolio::Links', :action => 'edit', :link_id => link.id }) %> 
+ /  <%= link_to_remote("delete", :confirm => "Are you sure you want to delete this link?", :url => {:controller => 'Portfolio::Links', :action => 'destroy', :link_id => link.id }, :before => "Element.show('link-action-loader-#{link.id}')" ) %>
+<% end %>
+<p><%= h(link.url)%></p>
+<%= h(link.description)%> <span><%= link.created_at.to_date.to_s(:long) %></span>
+</div>

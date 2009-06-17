@@ -1,0 +1,26 @@
+<div id="content-title">
+<h2>Create a Blog Post</h2>
+</div>
+<p>Complete this form to create a new blog post.<br />Making the post <strong>public</strong> means <strong>anyone</strong> who visits your portfolio <strong>will be able to see it</strong>.</p>
+<%= error_messages_for :post %>
+
+<% form_for :post, :url => { :action => 'create' } do |f| %>
+  <div>
+    <label>Enter a title</label><br />
+    <%= f.text_field :title, :class => 'large' %>
+  </div>
+
+  <div>
+    <label>Write your blog post</label><br />
+    <%= f.text_area :body, :cols => 69 %>
+  </div>
+
+  <div>
+  <label>Privacy setting: </label>
+	<%= f.select(:privacy, [ ['Private', 'private'], ['Shared', 'shared'], ['Public', 'public'] ]) %>
+  </div>
+
+  <div>
+    <%= f.submit "Create" %> or <%= link_to "go back to your blog", :action => 'index' %>
+  </div>
+<% end %>

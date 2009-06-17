@@ -1,0 +1,37 @@
+<div id="content-title">
+<h2>Create a new school, college or university</h2>
+</div>
+<p>Complete this form to create a new educational institution.<br />
+Making the institution <strong>public</strong> means <strong>anyone</strong> who visits your portfolio <strong>will be able to see it</strong> - and any qualifications you earned there.</p>
+<%= error_messages_for :institution %>
+
+<% form_for :institution, :url => { :action => 'create' } do |f| %>
+	<div>
+		<label>What was the name of the institution?</label><br />
+		<%= f.text_field :name, :class => 'medium' %>
+	</div>
+
+	<div>
+		<label>Where was it based?</label><br />
+		<%= f.text_field :location, :class => 'medium' %>
+	</div>
+
+	<div>
+		<label>When did you start?</label><br />
+		<%= f.date_select(:start_date, :discard_day => true, :order => [:month, :year], :start_year => 1920, :end_year => DateTime.now.year) %>
+	</div>
+
+	<div>
+		<label>When did you finish?</label><br />
+		<%= f.date_select(:end_date, :discard_day => true, :order => [:month, :year], :start_year => 1920, :end_year => DateTime.now.year) %>
+	</div>
+
+	<div>
+		<label>Privacy setting: </label>
+		<%= f.select(:privacy, [ ['Private', 'private'], ['Shared', 'shared'], ['Public', 'public'] ]) %>
+	</div>
+
+	<div>
+		<%= f.submit "Create" %> or <%= link_to "go back to your education", :action => 'index' %>
+	</div>
+<% end %>

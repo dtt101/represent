@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Represent - the social e-portfolio</title>
+	<%= stylesheet_link_tag "represent", :media => "all" %>
+	<meta name="verify-v1" content="nuo5jpFXYHo7NA778fyhV1n4dqRvw/SSrLcq3OJtul4=" />
+</head>
+<body>
+<div id="header">
+	<h1><%= link_to(image_tag("/images/represent.gif", :size => "189x41"), { :controller => "home", :action => "index" } ) %></h1>
+	<h2>e-portfolio</h2>
+</div>
+<div id="main">
+	<div id="app-content">
+
+	<% if flash[:notice] %>
+	<div id="notice"><%= flash[:notice] %></div>
+	<% end %>
+	<%= yield  %>
+	</div>
+</div>
+<%= render(:partial => "shared/footer")%>
+</body>
+</html>

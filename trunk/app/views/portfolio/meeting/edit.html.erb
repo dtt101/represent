@@ -1,0 +1,37 @@
+<div id="content-title">
+<h2>Edit this meeting</h2>
+</div>
+<p>Update the details of your meeting.<br />
+Making the meeting <strong>public</strong> means <strong>anyone</strong> who visits your portfolio <strong>will be able to see it</strong>.</p>
+<%= error_messages_for :meeting %>
+
+<% form_for :meeting, :url => { :action => 'update', :meeting_id => @meeting.id } do |f| %>
+	<div>
+		<label>Who did you meet?</label><br />
+		<%= f.text_field :attendees, :class => 'medium' %>
+	</div>
+
+	<div>
+		<label>Where?</label><br />
+		<%= f.text_field :location, :class => 'medium' %>
+	</div>
+
+	<div>
+		<label>When?</label><br />
+		<%= f.date_select(:meeting_date, :order => [:day, :month, :year], :start_year => 1920, :end_year => DateTime.now.year) %>
+	</div>
+
+  <div>
+    <label>What was the outcome of the meeting?</label><br />
+    <%= f.text_area :result, :cols => 69 %>
+  </div>
+
+	<div>
+		<label>Privacy setting: </label>
+		<%= f.select(:privacy, [ ['Private', 'private'], ['Shared', 'shared'], ['Public', 'public'] ]) %>
+	</div>
+
+	<div>
+		<%= f.submit "Save" %> or <%= link_to "go back to your meetings", :action => 'index' %>
+	</div>
+<% end %>

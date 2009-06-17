@@ -1,0 +1,17 @@
+<div id="content-title">
+<% if @meeting %>
+<img src="/images/<%= @meeting.privacy %>.gif" alt="<%= @meeting.privacy %>" />
+<h2><%= h(@meeting.attendees) %></h2>
+<span><%= h(@meeting.location) %></span>
+<% if @owner %>
+<%= link_to "Edit", :action => "edit", :meeting_id => @meeting.id %>
+<%= link_to "Delete", :action => "confirm", :meeting_id => @meeting.id %>
+<% end %>
+</div>
+<div id="post">
+<p><strong>Date:</strong> <%= @meeting.meeting_date.to_date.to_s(:long) %></p>
+<%= simple_format(@meeting.result) %>
+</div>
+<% else %>
+<h2>No meeting available</h2>
+<% end %>

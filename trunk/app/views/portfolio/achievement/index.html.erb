@@ -1,0 +1,20 @@
+<div id="content-title">
+<h2>Achievement</h2>
+<% if @owner %>
+<%= link_to "Add a new achievement", :action => "new" %>
+<% end %>
+</div>
+<% if @achievements.length > 0 %>
+<% for achievement in @achievements %>
+<div class="entry">
+<h4><img src="/images/<%= achievement.privacy %>.gif" alt="<%= achievement.privacy %>" />
+<%= link_to truncate(achievement.description, 100), :action => "show", :achievement_id => achievement.id %>
+ <span><%= h(achievement.location) %></span>
+</h4>
+<p><strong>Date:</strong> <%= achievement.achievement_date.to_date.to_s(:long) %></p>
+</div>
+<% end %>
+<% else %>
+<h4>No achievements available</h4>
+<p>Use this area to record the things you are proud of achieving, from formal exams to personal goals. You can choose to share them with the world, just contacts you've added or keep them private.<p>
+<% end %>

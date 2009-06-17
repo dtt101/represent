@@ -1,0 +1,21 @@
+<div id="content-title">
+<h2>Activity</h2>
+<% if @owner %>
+<%= link_to "Add a new activity", :action => "new" %>
+<% end %>
+</div>
+<% if @activities.length > 0 %>
+<% for activity in @activities %>
+<div class="entry">
+<h4><img src="/images/<%= activity.privacy %>.gif" alt="<%= activity.privacy %>" />
+<%= link_to activity.description, :action => "show", :activity_id => activity.id %>
+ <span><%= h(activity.location) %></span>
+</h4>
+<p><strong>Dates:</strong> <%= activity.start_date.to_date.to_s(:long) %>  - <%= activity.end_date.to_date.to_s(:long) %></p>
+<%= simple_format(truncate(activity.result, 250)) %>
+</div>
+<% end %>
+<% else %>
+<h4>No activities available</h4>
+<p>An activity is something you've done that you want to record, and tell people about - something you learned from. You can choose to share them with the world, just contacts you've added or keep them private.<p>
+<% end %>

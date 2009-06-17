@@ -1,0 +1,2 @@
+module Portfolio::PostsHelper
+end

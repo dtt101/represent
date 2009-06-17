@@ -1,0 +1,429 @@
+* {
+	padding:0;
+	margin:0;
+}
+html, body {
+	font-family: arial, helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	line-height: 15px;
+	color: #444444;
+	background-color: #FFF;
+	margin: 0px;
+	padding: 10px 10px 20px 10px;
+	text-align: left;
+}
+/*
+body {
+	background:url(/images/flower.jpg) no-repeat 758px 64px;
+}
+
+
+body {
+	background:url(/images/sweets.jpg) no-repeat 660px 95px;
+}
+*/
+
+body {
+	background:url(/images/elephant.jpg) no-repeat 720px 68px;
+}
+
+img {
+	border:0;
+}
+
+h2 {
+	font-size:15px;
+	color:#000;
+	margin-bottom:16px;
+}
+h3 {
+	font-size:14px;
+	color:#000;
+}
+h4 {
+	font-size:13px;
+	color:#000;
+	margin-bottom:8px;
+}
+
+h5 {
+	font-size:13px;
+	color:#666;
+	margin-bottom:0px;
+}
+
+h4 span {
+	color:#999;
+}
+
+h4 span span {
+	color:#666;
+}
+
+h4 img {
+	margin-right:5px;
+}
+
+a {
+	color:#873e8f;
+	text-decoration:none;
+}
+a:hover {
+	color: #000;
+	text-decoration:underline;
+}
+
+p {
+	margin-bottom:8px;
+}
+
+/* login panel */
+
+div.login-panel {
+	width:420px;
+	margin:20px 200px 120px 200px;
+	border:1px solid black;
+	text-align:left;
+	padding:32px;
+	background-color:#fff;
+}
+
+div.login-panel input {
+	line-height:24px;
+	font-size:14px;
+}
+
+div.login-panel input#name {
+	width:300px;
+}
+
+div.login-panel input#password {
+	width:200px;
+}
+
+dt {
+	width:80px;
+	float:left;
+	line-height:24px;
+	font-size:14px;
+	margin-top:10px;
+}
+dd {
+	margin:10px 0px 5px 80px;
+	line-height:24px;
+	font-size:11px;
+	
+}
+
+/* form element styles */
+label {
+	font-weight:bold;
+	line-height:24px;
+}
+
+label span {
+	color:#666;
+}
+
+fieldset {
+	border:0;
+}
+
+form div {
+	margin-bottom:16px;
+}
+
+input.small {
+	width:180px;
+	padding:4px;
+}
+input.medium {
+	width:270px;
+	padding:4px;
+}
+
+input.large {
+	width:498px;
+	padding:4px;
+}
+
+textarea {
+	padding:4px;
+	height:150px;
+}
+
+form.button-to {
+	float:left;
+	margin-right:8px;
+	margin-top:-2px;
+}
+
+/* form error styles */
+#errorExplanation {
+	border:1px solid black;
+	padding:10px;
+	background-color:#e8e8e8;
+	width:498px;
+}
+
+#errorExplanation h2 {
+	font-size:13px;
+	color:#000;	
+}
+
+.fieldWithErrors input, .fieldWithErrors textarea {
+	border-color:#0168AB;
+}
+
+/* Header styles */
+div#header {
+	width:823px;
+	border-top:6px solid #000;
+	padding-top:8px;
+	margin-bottom:100px;
+}
+div#header h1 {
+	float:left;
+}
+
+div#header h1 a:hover {
+	border-bottom:1px solid black;
+}
+div#header h2 {
+	float:right;
+	color:#000;
+}
+
+div#subheader {
+	margin:8px 0 8px 0;
+	width:823px;
+}
+
+div#subheader h2 {
+	color:#000;
+	margin-bottom:4px;
+}
+
+div#subheader h2 span {
+	color:#444;
+	font-weight:normal;
+	font-size:12px;
+}
+
+div#subheader input {
+	margin-right:4px;
+}
+
+div#subheader #loader-container {
+	height:16px;
+	width:16px;
+	display:inline-block;
+}
+
+/* main area */
+div#main {
+	clear:both;
+	position:relative;
+	margin-top:8px;
+	margin-left:8px;
+}
+
+div#main h3 {
+	margin-bottom:8px;
+}
+
+div#main ul {
+	margin:8px;
+}
+
+div#main li {
+	margin:4px;
+}
+
+div#main ul.nobullets {
+	list-style-type: none;
+}
+
+/* notice */
+div#notice {
+	margin:8px 0 8px 0;
+	padding-bottom:8px;
+	width:100%;
+	text-align:center;
+	color:#000;
+	font-weight:bold;
+	border-bottom:1px solid #ccc;
+}
+div#app-content div#notice {
+	margin:0;
+	padding:0;
+	border:0;
+}
+/* content styles */
+div#app-content {
+	width:823px;
+	padding-top:100px;
+}
+div#content {
+	width:604px;
+	float:left;
+}
+
+div#content-title {
+	width:604px;
+	margin-bottom:24px;
+}
+
+div#content-title h2, div#content-title span {
+	display:inline;
+	padding-right:16px;
+}
+
+div#content-title a {
+	border-left:1px solid #444;
+	padding-left:16px;
+	margin-right:16px;
+}
+
+/* content two column layout */
+#content div.leftcol {
+	float:left;
+}
+
+#content div.rightcol {
+	margin-left:220px;
+}
+
+#content div.follow-column {
+	clear:both;
+}
+
+#content div.column-control {
+	padding-top:25px;
+}
+
+/* content breakout panel */
+#content div.breakout {
+	border:1px solid #ccc;
+	padding:10px;
+	background-color:#e8e8e8;
+	width:478px;
+}
+
+/* list hover styles */
+ul.hover li {
+	padding-top:2px;
+	padding-bottom:2px;
+}
+ul.hover li span.actions {
+	visibility:hidden;
+}
+ul.hover li:hover span.actions {
+	visibility:visible;
+}
+/* sidepanel styles */
+div#sidepanel {
+	margin-left:610px;
+	width:189px;
+	position:relative;
+	top:0;
+}
+
+div#sidepanel h4 {
+	margin-left:8px;
+	color:#333;
+}
+
+div#sidepanel ul {
+	list-style:none;
+	margin-left:8px;
+	margin-bottom:8px;
+}
+
+div#sidepanel li {
+	padding-bottom:2px;
+	font-weight:bold;
+	color:#000;
+}
+
+div#sidepanel span {
+	font-weight:normal;
+	color: #444;
+}
+
+div#sidepanel a {
+	font-weight:normal;
+}
+
+/* footer styles */
+div#footer {
+	border-top:1px solid #000;
+	width:823px;
+	margin-top:8px;
+	padding-top:8px;
+	padding-bottom:8px;
+	float:left;
+}
+
+/* blog and general entry box */
+div.entry {
+	margin-bottom:16px;
+	width:100%;
+	padding-bottom:8px;
+}
+
+div.entry h4 {
+	margin-bottom:8px;
+}
+
+div.entry div {
+	color:#999;
+}
+
+div.entry div label {
+	color:#444;
+}
+
+div#entry-comments div {
+	margin-bottom:16px;
+}
+
+div#entry-comments div span {
+	color:#000;
+}
+
+/* styling for entry with heading link and smaller content note under heading */
+div.link h4 {
+	display:inline;
+}
+
+div.link span {
+	color:#999;
+}
+
+div.link p {
+	margin-bottom:0;
+	color:#999;
+	font-size:0.9em;
+}
+
+div#links {
+	margin-top:16px;
+}
+
+/* what colour is privacy? it's not bold */
+span.public {
+	color:#49d324;
+	font-weight:normal;
+}
+
+span.shared {
+	color:#ff9c0a;
+	font-weight:normal;
+}
+
+span.private {
+	color:#b80606;
+	font-weight:normal;
+}

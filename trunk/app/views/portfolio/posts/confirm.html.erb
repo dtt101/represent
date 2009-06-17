@@ -1,0 +1,8 @@
+<div id="content-title">
+<h2>Are you sure?</h2>
+</div>
+<p>
+Would you like to remove <strong><%= h(@post.title) %></strong> created on <strong><%= Date::ABBR_MONTHNAMES[@post.created_at.mon] %> <%= @post.created_at.day %></strong>?
+</p>
+<%= button_to "Yes!", :action => "destroy", :post_id => @post.id %> or <%= link_to "no, I've changed my mind", :action => "index" %>
+</div>

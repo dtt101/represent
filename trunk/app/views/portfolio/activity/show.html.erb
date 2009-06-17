@@ -1,0 +1,17 @@
+<div id="content-title">
+<% if @activity %>
+<img src="/images/<%= @activity.privacy %>.gif" alt="<%= @activity.privacy %>" />
+<h2><%= h(@activity.description) %></h2>
+<span><%= h(@activity.location) %></span>
+<% if @owner %>
+<%= link_to "Edit", :action => "edit", :activity_id => @activity.id %>
+<%= link_to "Delete", :action => "confirm", :activity_id => @activity.id %>
+<% end %>
+</div>
+<div id="post">
+<p><strong>Dates:</strong> <%= @activity.start_date.to_date.to_s(:long) %>  - <%= @activity.end_date.to_date.to_s(:long) %></p>
+<%= simple_format(@activity.result) %>
+</div>
+<% else %>
+<h2>No activity available</h2>
+<% end %>

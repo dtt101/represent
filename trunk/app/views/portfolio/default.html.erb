@@ -1,0 +1,22 @@
+<h2>Overview</h2>
+<h4>Recent Updates</h4>
+<% if @recently_active.length > 0 %>
+<ul class="nobullets">
+<% for recent in @recently_active %>
+<li><img src="/images/<%= recent.privacy %>.gif" alt="<%= recent.privacy %>" title="<%= recent.privacy %>" /> <%= activity_message_for(recent) %></li>
+<% end %>
+</ul>
+<% else %>
+<p>There are no recent updates to this portfolio.</p>
+<% end %>
+<h4>Summary <span>(<img src="/images/public.gif" alt="public" title="public"/> / <img src="/images/shared.gif" alt="shared" title="shared"/> / <img src="/images/private.gif" alt="private" title="private"/>)</span></h4>
+<p>Portfolio statistics - displayed by status</p>
+<ul class="nobullets">
+	<li><strong><%= link_to "Blog Posts", { :controller => 'Portfolio::Posts', :id => params[:id] } %></strong>: <span class="public"><%= @portfolio.posts.count(:conditions => ["privacy = ?", 'public']) %></span> / <span class="shared"><%= @portfolio.posts.count(:conditions => ["privacy = ?", 'shared']) %></span> / <span class="private"><%= @portfolio.posts.count(:conditions => ["privacy = ?", 'private']) %></span></li>
+	<li><strong><%= link_to "Education", { :controller => 'Portfolio::Education', :id => params[:id] } %></strong>: <span class="public"><%= @portfolio.institutions.count(:conditions => ["privacy = ?", 'public']) %></span> / <span class="shared"><%= @portfolio.institutions.count(:conditions => ["privacy = ?", 'shared']) %></span> / <span class="private"><%= @portfolio.institutions.count(:conditions => ["privacy = ?", 'private']) %></span></li>
+	<li><strong><%= link_to "Experiences", { :controller => 'Portfolio::Experience', :id => params[:id] } %></strong>: <span class="public"><%= @portfolio.experiences.count(:conditions => ["privacy = ?", 'public']) %></span> / <span class="shared"><%= @portfolio.experiences.count(:conditions => ["privacy = ?", 'shared']) %></span> / <span class="private"><%= @portfolio.experiences.count(:conditions => ["privacy = ?", 'private']) %></span></li>
+	<li><strong><%= link_to "Activities", { :controller => 'Portfolio::Activity', :id => params[:id] } %></strong>: <span class="public"><%= @portfolio.activities.count(:conditions => ["privacy = ?", 'public']) %></span> / <span class="shared"><%= @portfolio.activities.count(:conditions => ["privacy = ?", 'shared']) %></span> / <span class="private"><%= @portfolio.activities.count(:conditions => ["privacy = ?", 'private']) %></span></li>
+	<li><strong><%= link_to "Meetings", { :controller => 'Portfolio::Meeting', :id => params[:id] } %></strong>: <span class="public"><%= @portfolio.meetings.count(:conditions => ["privacy = ?", 'public']) %></span> / <span class="shared"><%= @portfolio.meetings.count(:conditions => ["privacy = ?", 'shared']) %></span> / <span class="private"><%= @portfolio.meetings.count(:conditions => ["privacy = ?", 'private']) %></span></li>
+	<li><strong><%= link_to "Achievements", { :controller => 'Portfolio::Achievement', :id => params[:id] } %></strong>: <span class="public"><%= @portfolio.achievements.count(:conditions => ["privacy = ?", 'public']) %></span> / <span class="shared"><%= @portfolio.achievements.count(:conditions => ["privacy = ?", 'shared']) %></span> / <span class="private"><%= @portfolio.achievements.count(:conditions => ["privacy = ?", 'private']) %></span></li>
+	<li><strong><%= link_to "Links", { :controller => 'Portfolio::Links', :id => params[:id] } %></strong>: <span class="public"><%= @portfolio.links.count(:conditions => ["privacy = ?", 'public']) %></span> / <span class="shared"><%= @portfolio.links.count(:conditions => ["privacy = ?", 'shared']) %></span> / <span class="private"><%= @portfolio.links.count(:conditions => ["privacy = ?", 'private']) %></span></li>
+</ul>
